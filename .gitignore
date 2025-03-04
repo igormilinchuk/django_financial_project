@@ -1,0 +1,61 @@
+# Ігноруємо середовище virtualenv
+venv/
+.env
+*.env
+
+# База даних SQLite (якщо використовуєш для тестування)
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+
+# Логи та дампи
+*.log
+*.sql
+*.sqlite3
+
+# Статичні файли, згенеровані Django
+staticfiles/
+media/
+
+# Налаштування IDE
+.vscode/
+.idea/
+*.iml
+
+# Кеші Django
+*.pid
+*.pyc
+*.pyo
+*.pyd
+
+# Кеш-папки
+__pycache__/
+*/__pycache__/
+
+# Міграції, якщо вони згенеровані випадково
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/*.pyd
+*/migrations/__pycache__/
+
+# Docker файли (якщо використовуєш Docker)
+*.dockerfile
+docker-compose.override.yml
+
+# MacOS та інші системні файли
+.DS_Store
+Thumbs.db
+
+# Тестові покриття
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Ігноруємо файли, створені редакторами
+*.swp
+*.swo
