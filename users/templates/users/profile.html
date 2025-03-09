@@ -1,31 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Профіль</title>
 </head>
 <body>
-    <header>
-        <h1>User Profile</h1>
-    </header>
-    <main>
-        <section class="profile-info">
-            <h2>Profile Information</h2>
-            <p><strong>Name:</strong> John Doe</p>
-            <p><strong>Email:</strong> john.doe@example.com</p>
-            <p><strong>Joined:</strong> January 1, 2020</p>
-        </section>
-        <section class="profile-actions">
-            <h2>Actions</h2>
-            <button>Edit Profile</button>
-            <button>Change Password</button>
-            <button>Logout</button>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Your Company</p>
-    </footer>
+    <h2>Ласкаво просимо, {{ request.user.username }}</h2>
+    <p>Email: {{ request.user.email }}</p>
+    <a href="{% url 'users:logout' %}">Вийти</a>
 </body>
 </html>

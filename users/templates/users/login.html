@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+    <title>Вхід</title>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="POST" action="{% url 'login' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
-    </div>
+    <h2>Вхід</h2>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="{% url 'users:login' %}">
+        {% csrf_token %}
+        <label>Логін:</label>
+        <input type="text" name="username" required><br>
+        <label>Пароль:</label>
+        <input type="password" name="password" required><br>
+        <button type="submit">Увійти</button>
+    </form>
+    <p>Ще не маєте акаунта? <a href="{% url 'users:register' %}">Реєстрація</a>
+    </p>
 </body>
 </html>
