@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Управління бюджетом</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <p>Home</p>
+    <header>
+        <h1>Головна сторінка</h1>
+        <nav>
+            <ul>
+                <li><a href="/income">Внесення доходу</a></li>
+                <li><a href="/goals">Фінансові цілі</a></li>
+                <li><a href="/analytics">Аналітика</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="income">
+            <h2>Внесення доходу</h2>
+            <form action="/income" method="post">
+                <label for="source">Джерело доходу:</label>
+                <input type="text" id="source" name="source" required>
+                
+                <label for="amount">Сума:</label>
+                <input type="number" id="amount" name="amount" required>
+                
+                <label for="frequency">Періодичність:</label>
+                <select id="frequency" name="frequency">
+                    <option value="one-time">Одноразовий</option>
+                    <option value="monthly">Щомісячний</option>
+                    <option value="weekly">Щотижневий</option>
+                </select>
+                
+                <button type="submit">Додати</button>
+            </form>
+        </section>
+        
+        <section id="goals">
+            <h2>Фінансові цілі</h2>
+            <form action="/goals" method="post">
+                <label for="goal-name">Назва цілі:</label>
+                <input type="text" id="goal-name" name="goal-name" required>
+                
+                <label for="goal-amount">Сума:</label>
+                <input type="number" id="goal-amount" name="goal-amount" required>
+                
+                <label for="goal-date">Дата досягнення:</label>
+                <input type="date" id="goal-date" name="goal-date" required>
+                
+                <button type="submit">Додати ціль</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Управління бюджетом</p>
+    </footer>
 </body>
 </html>
