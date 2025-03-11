@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import goals_list, add_goal
+from . import views
+
+app_name = "goals"
 
 urlpatterns = [
-    path('list/', goals_list, name='goals_list'),
-    path('add/', add_goal, name='add_goal'),
+    path('list/', views.goals_list, name='goals_list'),
+    path('add/', views.add_goal, name='add_goal'),
 ]

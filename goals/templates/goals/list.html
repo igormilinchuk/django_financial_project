@@ -1,7 +1,7 @@
 
 {% block content %}
 <h2>Ваші фінансові цілі</h2>
-<a href="{% url 'add_goal' %}">+ Додати ціль</a>
+<a href="{% url 'goals:add_goal' %}">+ Додати ціль</a>
 <ul>
     {% for goal in goals %}
     <li>

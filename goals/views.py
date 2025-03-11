@@ -16,7 +16,7 @@ def add_goal(request):
             goal = form.save(commit=False)
             goal.user = request.user
             goal.save()
-            return redirect('goals_list')
+            return redirect('goals:goals_list')
     else:
         form = FinancialGoalForm()
     return render(request, 'goals/add.html', {'form': form})
