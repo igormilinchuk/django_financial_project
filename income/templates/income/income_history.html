@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Історія доходів</h2>
+<table>
+    <tr>
+        <th>Джерело</th>
+        <th>Сума</th>
+        <th>Тип</th>
+        <th>Дата</th>
+    </tr>
+    {% for income in incomes %}
+    <tr>
+        <td>{{ income.source }}</td>
+        <td>{{ income.amount }}</td>
+        <td>{{ income.get_income_type_display }}</td>
+        <td>{{ income.date_received }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
