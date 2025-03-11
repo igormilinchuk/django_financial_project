@@ -11,7 +11,7 @@ def add_income(request):
             income = form.save(commit=False)
             income.user = request.user  
             income.save()
-            return redirect('users:income_history')  
+            return redirect('income:income_history')
     else:
         form = IncomeForm()
 

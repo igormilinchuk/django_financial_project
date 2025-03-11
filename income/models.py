@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import User  # Імпортуємо користувача з users.models
+from users.models import User  
 
 class Income(models.Model):
     INCOME_TYPES = [
