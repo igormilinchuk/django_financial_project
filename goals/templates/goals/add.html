@@ -1,0 +1,9 @@
+
+{% block content %}
+<h2>Додати фінансову ціль</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зберегти</button>
+</form>
+{% endblock %}
