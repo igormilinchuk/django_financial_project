@@ -30,9 +30,9 @@ def generate_report(request, report_type):
             "goals": [
                 {
                     "name": goal.name,
-                    "target": goal.target_amount,
-                    "current": goal.current_amount,
-                    "progress": goal.progress_percentage
+                    "target": float(goal.target_amount),
+                    "current": float(goal.current_amount),
+                    "progress": goal.progress_percentage()
                 } for goal in goals
             ]
         }
@@ -62,15 +62,14 @@ def generate_report(request, report_type):
         category_expenses = Expense.objects.filter(user=user).values('category').annotate(total=Sum('amount'))
         data = {
             "categories": [
-                {"category": expense['category'], "total": expense['total']} for expense in category_expenses
+                {"category": expense['category'], "total": float(expense['total'])} for expense in category_expenses
             ]
         }
 
     report = Report.objects.create(
-    user=user, 
-    report_type=report_type, 
-    data=json.dumps(data, default=str) 
-)
+        user=user, 
+        report_type=report_type, 
+        data=json.dumps(data, default=str)  
+    )
 
-
-    return render(request, "analytics/report_detail.html", {"report": report})
+    return render(request, "analytics/report_detail.html", {"report": report, "data": data})
