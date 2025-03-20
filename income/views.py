@@ -12,10 +12,11 @@ def add_income(request):
         if form.is_valid():
             income = form.save(commit=False)
             income.user = request.user
+            income.date = now().date()
             
             if income.amount <= 0:
                 messages.error(request, "Сума повинна бути більшою за нуль.")
-            elif income.date_received > now().date():
+            elif income.date and income.date > now().date():
                 messages.error(request, "Дата не може бути в майбутньому.")
             else:
                 income.save()
@@ -28,6 +29,6 @@ def add_income(request):
 
 @login_required
 def income_history(request):
-    incomes = Income.objects.filter(user=request.user).order_by('-date_received')
+    incomes = Income.objects.filter(user=request.user).order_by('-date')
     total_income = sum(income.amount for income in incomes)  
     return render(request, 'income/income_history.html', {'incomes': incomes, 'total_income': total_income})

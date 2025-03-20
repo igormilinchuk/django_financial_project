@@ -66,6 +66,11 @@ def generate_report(request, report_type):
             ]
         }
 
-    report = Report.objects.create(user=user, report_type=report_type, data=json.dumps(data))
+    report = Report.objects.create(
+    user=user, 
+    report_type=report_type, 
+    data=json.dumps(data, default=str) 
+)
+
 
     return render(request, "analytics/report_detail.html", {"report": report})
