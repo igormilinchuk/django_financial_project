@@ -1,0 +1,9 @@
+
+{% block content %}
+<h2>Ваші витрати</h2>
+<ul>
+    {% for expense in expenses %}
+        <li>{{ expense.date }} - {{ expense.category }}: {{ expense.amount }} грн</li>
+    {% endfor %}
+</ul>
+{% endblock %}
