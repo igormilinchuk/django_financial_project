@@ -14,14 +14,21 @@ def add_income(request):
             income.user = request.user
             income.date = now().date()
             
+            print(f"Amount: {income.amount}, Date: {income.date}")  # Додайте для перевірки значення
+
             if income.amount <= 0:
                 messages.error(request, "Сума повинна бути більшою за нуль.")
+                print("Error: Amount is less than or equal to zero.")  # Додайте для перевірки
             elif income.date and income.date > now().date():
                 messages.error(request, "Дата не може бути в майбутньому.")
+                print("Error: Date is in the future.")  # Додайте для перевірки
             else:
                 income.save()
                 messages.success(request, "Дохід успішно додано!")
+                print("Income saved successfully!")  # Додайте для перевірки
                 return redirect('income:income_history')
+        else:
+            print(f"Form is not valid: {form.errors}")  # Вивести помилки форми, якщо є
     else:
         form = IncomeForm()
 
