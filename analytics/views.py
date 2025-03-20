@@ -56,4 +56,4 @@ def generate_report(request, report_type):
 
     report = Report.objects.create(user=user, report_type=report_type, data=data)
 
-    return render(request, "reports/report_detail.html", {"report": report})
+    return render(request, "analytics/report_detail.html", {"report": report})
