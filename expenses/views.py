@@ -11,7 +11,7 @@ def add_expense(request):
             expense = form.save(commit=False)
             expense.user = request.user
             expense.save()
-            return redirect('expenses_list')
+            return redirect('expenses:expenses_list')
     else:
         form = ExpenseForm()
     return render(request, 'expenses/add_expense.html', {'form': form})
