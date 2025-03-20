@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from .models import Report
 from income.models import Income
 from expenses.models import Expense
@@ -13,12 +14,14 @@ def generate_report(request, report_type):
     data = {}
 
     if report_type == "income_expense":
-        incomes = Income.objects.filter(user=user)
-        expenses = Expense.objects.filter(user=user)
+        total_income = Income.objects.filter(user=user).aggregate(Sum('amount'))['amount__sum'] or 0
+        total_expenses = Expense.objects.filter(user=user).aggregate(Sum('amount'))['amount__sum'] or 0
+        balance = total_income - total_expenses
+
         data = {
-            "total_income": sum(i.amount for i in incomes),
-            "total_expenses": sum(e.amount for e in expenses),
-            "balance": sum(i.amount for i in incomes) - sum(e.amount for e in expenses)
+            "total_income": total_income,
+            "total_expenses": total_expenses,
+            "balance": balance
         }
 
     elif report_type == "goal_progress":
@@ -36,24 +39,33 @@ def generate_report(request, report_type):
 
     elif report_type == "comparison":
         today = datetime.today()
-        last_month = today - timedelta(days=30)
+        first_day_current = today.replace(day=1)
+        first_day_last_month = (first_day_current - timedelta(days=1)).replace(day=1)
 
-        incomes_current = Income.objects.filter(user=user, date__month=today.month)
-        expenses_current = Expense.objects.filter(user=user, date__month=today.month)
-        incomes_previous = Income.objects.filter(user=user, date__month=last_month.month)
-        expenses_previous = Expense.objects.filter(user=user, date__month=last_month.month)
+        incomes_current = Income.objects.filter(user=user, date__range=[first_day_current, today]).aggregate(Sum('amount'))['amount__sum'] or 0
+        expenses_current = Expense.objects.filter(user=user, date__range=[first_day_current, today]).aggregate(Sum('amount'))['amount__sum'] or 0
+        incomes_previous = Income.objects.filter(user=user, date__range=[first_day_last_month, first_day_current - timedelta(days=1)]).aggregate(Sum('amount'))['amount__sum'] or 0
+        expenses_previous = Expense.objects.filter(user=user, date__range=[first_day_last_month, first_day_current - timedelta(days=1)]).aggregate(Sum('amount'))['amount__sum'] or 0
 
         data = {
             "current_month": {
-                "income": sum(i.amount for i in incomes_current),
-                "expenses": sum(e.amount for e in expenses_current)
+                "income": incomes_current,
+                "expenses": expenses_current
             },
             "last_month": {
-                "income": sum(i.amount for i in incomes_previous),
-                "expenses": sum(e.amount for e in expenses_previous)
+                "income": incomes_previous,
+                "expenses": expenses_previous
             }
         }
 
-    report = Report.objects.create(user=user, report_type=report_type, data=data)
+    elif report_type == "category_expenses":
+        category_expenses = Expense.objects.filter(user=user).values('category').annotate(total=Sum('amount'))
+        data = {
+            "categories": [
+                {"category": expense['category'], "total": expense['total']} for expense in category_expenses
+            ]
+        }
+
+    report = Report.objects.create(user=user, report_type=report_type, data=json.dumps(data))
 
     return render(request, "analytics/report_detail.html", {"report": report})

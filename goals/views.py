@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import FinancialGoal
-from .forms import FinancialGoalForm
+from .models import FinancialGoal, GoalContribution
+from .forms import FinancialGoalForm, GoalContributionForm
+
+
 
 @login_required
 def goals_list(request):
@@ -29,3 +31,27 @@ def add_goal(request):
         form = FinancialGoalForm()
 
     return render(request, 'goals/add.html', {'form': form})
+
+@login_required
+def update_goal_progress(request, goal_id):
+    goal = get_object_or_404(FinancialGoal, id=goal_id, user=request.user)
+
+    if request.method == "POST":
+        form = GoalContributionForm(request.POST)
+        if form.is_valid():
+            contribution = form.save(commit=False)
+            contribution.goal = goal
+
+            if goal.current_amount + contribution.amount > goal.target_amount:
+                messages.error(request, "Не можна внести більше, ніж потрібно для досягнення цілі!")
+            else:
+                contribution.save()  
+                messages.success(request, "Внесок додано успішно! Витрати оновлено.")
+            
+            return redirect("goals:goals_list")
+
+    else:
+        form = GoalContributionForm()
+
+    return render(request, "goals/update_goal.html", {"form": form, "goal": goal})
+
