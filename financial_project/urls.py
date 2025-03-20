@@ -23,4 +23,6 @@ urlpatterns = [
     path('user/', include(('users.urls', 'users'), namespace='user')),
     path('income/', include(('income.urls', 'income'), namespace='income')),
     path('goals/', include(('goals.urls', 'goals'), namespace='goals')),
+    path('expenses/', include(('expenses.urls', 'expenses'), namespace='expenses')),
+    path('analysis/', include(('analysis.urls', 'analysis'), namespace='analysis')),
 ]
