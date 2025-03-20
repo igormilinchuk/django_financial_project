@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.timezone import now
-from income.models import Income
+from .models import Income
 from .forms import IncomeForm
 
 @login_required
@@ -13,7 +13,6 @@ def add_income(request):
             income = form.save(commit=False)
             income.user = request.user
             
-            # Валідація даних
             if income.amount <= 0:
                 messages.error(request, "Сума повинна бути більшою за нуль.")
             elif income.date_received > now().date():
@@ -30,5 +29,5 @@ def add_income(request):
 @login_required
 def income_history(request):
     incomes = Income.objects.filter(user=request.user).order_by('-date_received')
-    total_income = sum(income.amount for income in incomes)  # Підрахунок загальної суми
+    total_income = sum(income.amount for income in incomes)  
     return render(request, 'income/income_history.html', {'incomes': incomes, 'total_income': total_income})
