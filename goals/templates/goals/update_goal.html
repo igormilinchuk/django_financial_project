@@ -4,6 +4,9 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    <label for="{{ form.amount.id_for_label }}">Сума внеску:</label>
+    <input type="number" name="amount" id="{{ form.amount.id_for_label }}" step="1" min="1" required>
+    
     <button type="submit">Додати</button>
 </form>
