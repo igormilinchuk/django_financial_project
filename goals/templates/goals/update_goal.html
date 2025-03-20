@@ -1,0 +1,9 @@
+<h2>Додати внесок до цілі "{{ goal.name }}"</h2>
+<p>Необхідно зібрати: {{ goal.target_amount }} грн</p>
+<p>Назбирано: {{ goal.current_amount }} грн</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Додати</button>
+</form>

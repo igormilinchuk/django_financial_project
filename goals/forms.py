@@ -1,5 +1,5 @@
 from django import forms
-from .models import FinancialGoal
+from .models import FinancialGoal, GoalContribution
 
 class FinancialGoalForm(forms.ModelForm):
     class Meta:
@@ -8,3 +8,8 @@ class FinancialGoalForm(forms.ModelForm):
         widgets = {
             'target_date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class GoalContributionForm(forms.ModelForm):
+    class Meta:
+        model = GoalContribution
+        fields = ['amount']

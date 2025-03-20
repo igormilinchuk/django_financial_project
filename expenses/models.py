@@ -7,6 +7,12 @@ class Expense(models.Model):
         ('transport', 'Транспорт'),
         ('housing', 'Житло'),
         ('entertainment', 'Розваги'),
+        ('clothing', 'Одяг'),
+        ('health', 'Здоров\'я'),
+        ('insurance', 'Страхування'),
+        ('utilities', 'Комунальні послуги'),
+        ('emergency', 'Резервний фонд'),
+        ('goals', 'Цілі'),
         ('other', 'Інше'),
     ]
 
