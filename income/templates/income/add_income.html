@@ -1,9 +1,25 @@
-
 {% block content %}
 <h2>Додавання доходу</h2>
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    <label for="datepicker">Дата отримання:</label>
+    <input type="text" id="datepicker" name="date_received" value="{{ form.date_received.value|default:'' }}">
+    
+    {{ form.amount.label_tag }} {{ form.amount }}
+    {{ form.source.label_tag }} {{ form.source }}
+
     <button type="submit">Зберегти</button>
 </form>
+
+<!-- Підключення flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#datepicker", {
+        dateFormat: "Y-m-d",
+        maxDate: "today",
+        locale: "uk"
+    });
+</script>
 {% endblock %}

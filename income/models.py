@@ -1,5 +1,6 @@
 from django.db import models
-from users.models import User  # Імпортуємо користувача з users.models
+from users.models import User  
+from django.utils.timezone import now
 
 class Income(models.Model):
     INCOME_TYPES = [
@@ -19,7 +20,7 @@ class Income(models.Model):
     source = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     income_type = models.CharField(max_length=20, choices=INCOME_TYPES, default='other')
-    date_received = models.DateField(auto_now_add=True)
+    date = models.DateField(default=now)
     recurrence = models.CharField(max_length=20, choices=RECURRENCE_CHOICES, default='one-time')
 
     def __str__(self):
