@@ -13,10 +13,11 @@ def add_expense(request):
             expense = form.save(commit=False)
             expense.user = request.user
             
-            # Валідація введених даних
+            # Перевірка на правильність суми
             if expense.amount <= 0:
                 messages.error(request, "Сума витрати повинна бути більше 0.")
-            elif expense.date > now().date():
+            # Перевірка на майбутню дату
+            elif expense.date and expense.date > now().date():
                 messages.error(request, "Дата витрати не може бути у майбутньому.")
             else:
                 expense.save()
@@ -26,6 +27,7 @@ def add_expense(request):
         form = ExpenseForm()
 
     return render(request, 'expenses/add_expense.html', {'form': form})
+
 
 @login_required
 def expenses_list(request):

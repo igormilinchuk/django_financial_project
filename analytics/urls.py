@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = 'analytics'
-
 urlpatterns = [
-    path("generate/<str:report_type>/", views.generate_report, name="generate_report"),
+    path('dashboard/', views.report_dashboard, name='report_dashboard'),
+    path('generate/', views.generate_report, name='generate_report'),
+
+    path('generate/<int:report_id>/pdf/', views.export_report_pdf, name='export_report_pdf'),
 ]

@@ -1,0 +1,6 @@
+<form method="POST">
+    {% csrf_token %}
+    <p>Ви впевнені, що хочете видалити цю ціль?</p>
+    <button type="submit">Так, видалити</button>
+    <a href="{% url 'goals:goals_list' %}">Скасувати</a>
+</form>

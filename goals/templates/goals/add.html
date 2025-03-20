@@ -1,9 +1,37 @@
-
 {% block content %}
 <h2>Додати фінансову ціль</h2>
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    <div>
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+        {{ form.name }}
+    </div>
+
+    <div>
+        <label for="{{ form.target_amount.id_for_label }}">{{ form.target_amount.label }}</label>
+        {{ form.target_amount }}
+    </div>
+    <!-- Додаємо клас flatpickr до поля target_date -->
+    <div>
+        <label for="{{ form.target_date.id_for_label }}">{{ form.target_date.label }}</label>
+        {{ form.target_date }} <!-- Форма використовуючи flatpickr -->
+    </div>
+
     <button type="submit">Зберегти</button>
 </form>
+
+<!-- Підключення flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    // Ініціалізація flatpickr для полів з класом .flatpickr
+    flatpickr(".flatpickr", {
+        dateFormat: "Y-m-d",  // Формат дати
+        minDate: "today",     // Не можна вибрати дату в минулому
+        locale: "uk"          // Українська мова
+    });
+</script>
+
 {% endblock %}
