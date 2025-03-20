@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Report
 from income.models import Income
-from expense.models import Expense
-from goals.models import Goal
+from expenses.models import Expense
+from goals.models import FinancialGoal
 from datetime import datetime, timedelta
 import json
 
@@ -22,7 +22,7 @@ def generate_report(request, report_type):
         }
 
     elif report_type == "goal_progress":
-        goals = Goal.objects.filter(user=user)
+        goals = FinancialGoal.objects.filter(user=user)
         data = {
             "goals": [
                 {
