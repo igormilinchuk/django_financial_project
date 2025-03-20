@@ -1,0 +1,24 @@
+{% block content %}
+<h2>Звіт: {{ report.get_report_type_display }}</h2>
+<p>Дата створення: {{ report.created_at }}</p>
+
+{% if report.report_type == "income_expense" %}
+    <p>Загальні доходи: {{ report.data.total_income }}</p>
+    <p>Загальні витрати: {{ report.data.total_expenses }}</p>
+    <p>Баланс: {{ report.data.balance }}</p>
+
+{% elif report.report_type == "goal_progress" %}
+    <ul>
+        {% for goal in report.data.goals %}
+            <li>{{ goal.name }}: {{ goal.current }} / {{ goal.target }} ({{ goal.progress }}%)</li>
+        {% endfor %}
+    </ul>
+
+{% elif report.report_type == "comparison" %}
+    <p>Доходи цього місяця: {{ report.data.current_month.income }}</p>
+    <p>Витрати цього місяця: {{ report.data.current_month.expenses }}</p>
+    <p>Доходи минулого місяця: {{ report.data.last_month.income }}</p>
+    <p>Витрати минулого місяця: {{ report.data.last_month.expenses }}</p>
+{% endif %}
+
+{% endblock %}
