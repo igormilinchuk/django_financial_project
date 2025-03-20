@@ -1,18 +1,16 @@
+{% for goal in goals %}
+    <div class="goal">
+        <h3>{{ goal.name }} ({{ goal.get_goal_type_display }})</h3>
+        <p>Ціль: {{ goal.target_amount }} грн</p>
+        <p>Назбирано: {{ goal.current_amount }} грн</p>
+        <p>Прогрес: {{ goal.progress_percentage|floatformat:2 }}%</p>
 
-{% block content %}
-<h2>Ваші фінансові цілі</h2>
-<a href="{% url 'goals:add_goal' %}">+ Додати ціль</a>
-<ul>
-    {% for goal in goals %}
-    <li>
-        <strong>{{ goal.name }}</strong> ({{ goal.get_goal_type_display }})  
-        <br>Сума: {{ goal.current_amount }} / {{ goal.target_amount }}
-        <br>Прогрес: {{ goal.progress_percentage|floatformat:2 }}%
-        <br>Залишилося: {{ goal.remaining_amount }}  
-        {% if goal.goal_type == 'saving' %}
-        <br>Рекомендований внесок: {{ goal.monthly_contribution|floatformat:2 }}
+        {% if goal.progress_percentage < 100 %}
+            <a href="{% url 'goals:update_goal_progress' goal.id %}" class="btn btn-primary">
+                Додати внесок
+            </a>
+        {% else %}
+            <p class="text-success">Ціль досягнута! 🎉</p>
         {% endif %}
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+    </div>
+{% endfor %}
