@@ -10,7 +10,6 @@ body {
     width: 100%;
 }
 
-
 /* Хедер */
 header {
     padding: 20px;
@@ -156,6 +155,31 @@ nav ul li a:hover {
     width: 1px;
     height: 100%;
 }
+/* Стилі для кнопок авторизації */
+.auth {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.auth-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #00c6ff, #0077ff);
+    border: 1px solid #006bb3;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.auth-btn:hover {
+    background: linear-gradient(45deg, #0077ff, #00c6ff);
+    transform: scale(1.05);
+}
 
 /* Футер */
 footer {
@@ -165,3 +189,4 @@ footer {
     bottom: 0;
     width: 100%;
 }
+

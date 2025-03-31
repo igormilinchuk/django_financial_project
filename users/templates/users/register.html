@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Реєстрація</title>
+    <link rel="stylesheet" href="/static/users/style.css"> <!-- Підключення стилів -->
 </head>
 <body>
-    <h2>Реєстрація</h2>
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
     <form method="POST" action="{% url 'users:register' %}">
-        {% csrf_token %}
-        <label>Логін:</label>
-        <input type="text" name="username" required><br>
+        <h2>Створення акаунта</h2>
         
-        <label>Email:</label>
-        <input type="email" name="email" required><br>
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+        
+        <label for="username">Логін:</label>
+        <input type="text" name="username" id="username" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br>
     
-        <label>Пароль:</label>
-        <input type="password" name="password" required><br>
+        <label for="password">Пароль:</label>
+        <input type="password" name="password" id="password" required><br>
 
         <button type="submit">Зареєструватися</button>
+        
+        <p>Вже маєте акаунт? <a href="{% url 'users:login' %}">Увійти</a></p>
     </form>
-    
-    <p>Вже маєте акаунт? <a href="{% url 'users:login' %}">Увійти</a></p>
+
+    <footer>
+        <p>&copy; 2025 Управління бюджетом</p>
+    </footer>
 </body>
 </html>

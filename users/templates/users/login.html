@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вхід</title>
+    <link rel="stylesheet" href="/static/users/style.css"> <!-- Підключення стилів -->
 </head>
 <body>
-    <h2>Вхід</h2>
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
     <form method="POST" action="{% url 'users:login' %}">
-        {% csrf_token %}
-        <label>Логін:</label>
-        <input type="text" name="username" required><br>
-        <label>Пароль:</label>
-        <input type="password" name="password" required><br>
+        <h2>Вхід до вашого акаунта</h2>
+        
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+        
+        <label for="username">Логін:</label>
+        <input type="text" name="username" id="username" required><br>
+        
+        <label for="password">Пароль:</label>
+        <input type="password" name="password" id="password" required><br>
+        
         <button type="submit">Увійти</button>
+        
+        <p>Ще не маєте акаунта? <a href="{% url 'users:register' %}">Реєстрація</a></p>
     </form>
-    <p>Ще не маєте акаунта? <a href="{% url 'users:register' %}">Реєстрація</a>
-    </p>
+
+    <footer>
+        <p>&copy; 2025 Управління бюджетом</p>
+    </footer>
 </body>
 </html>
