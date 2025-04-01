@@ -12,12 +12,25 @@
         <nav>
             <ul>
                 <li><a href="/income/history">Внесення доходу</a></li>
+                <li><a href="/expenses/history">Витрати</a></li>
                 <li><a href="/goals/list">Фінансові цілі</a></li>
                 <li><a href="/analytics/list">Аналітика</a></li>
             </ul>
         </nav>
     </header>
-    
+
+    <!-- Блок авторизації -->
+    <div class="auth">
+        {% if user.is_authenticated %}
+            <!-- Якщо користувач авторизований -->
+            <span class="username">{{ user.username }}</span>
+            <a href="/user/logout" class="auth-btn">Вийти</a>
+        {% else %}
+            <!-- Якщо користувач не авторизований -->
+            <a href="/user/login" class="auth-btn">Увійти</a>
+        {% endif %}
+    </div>
+
     <div class="container">
         <div class="outer">
             <div class="dot"></div>
@@ -31,7 +44,7 @@
             </div>
         </div>
     </div>
-    
+
     <footer>
         <p>&copy; 2025 Управління бюджетом</p>
     </footer>
