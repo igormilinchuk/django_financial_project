@@ -8,6 +8,7 @@
 </head>
 <body>
     <form method="POST" action="{% url 'users:register' %}">
+        {% csrf_token %}
         <h2>Створення акаунта</h2>
         
         {% if error %}

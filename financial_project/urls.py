@@ -24,5 +24,5 @@ urlpatterns = [
     path('income/', include(('income.urls', 'income'), namespace='income')),
     path('goals/', include(('goals.urls', 'goals'), namespace='goals')),
     path('expenses/', include(('expenses.urls', 'expenses'), namespace='expenses')),
-    path('analytics/', include(('analytics.urls', 'analytics'), namespace='analytics')),
+    path('financial_report/', include(('financial_report.urls', 'financial_report'), namespace='financial_report')),
 ]

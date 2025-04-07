@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фінансовий звіт</title>
+</head>
+<body>
+    <h1>Фінансовий звіт</h1>
+
+    <h2>Доходи</h2>
+    <p>Загальний дохід: {{ income.total_income }}</p>
+    <ul>
+        {% for income_type in income.by_type %}
+            <li>{{ income_type.income_type }}: {{ income_type.amount }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Графік доходів</h3>
+    <img src="data:image/png;base64,{{ income_chart }}" alt="Доходи графік" />
+
+    <h2>Витрати</h2>
+    <p>Загальні витрати: {{ expenses.total_expense }}</p>
+    <ul>
+        {% for expense in expenses.by_category %}
+            <li>{{ expense.category }}: {{ expense.amount }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Графік витрат</h3>
+    <img src="data:image/png;base64,{{ expense_chart }}" alt="Витрати графік" />
+</body>
+<h2>Фінансові цілі</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Категорія</th>
+            <th>Назва</th>
+            <th>Цільова сума</th>
+            <th>Поточна сума</th>
+            <th>Прогрес</th>
+            <th>Дата досягнення</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for goal in goals %}
+        <tr>
+            <td>{{ goal.category }}</td>
+            <td>{{ goal.name }}</td>
+            <td>{{ goal.target_amount }}</td>
+            <td>{{ goal.current_amount }}</td>
+            <td>{{ goal.progress }}%</td>
+            <td>{{ goal.target_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Графік фінансових цілей</h2>
+<img src="data:image/png;base64,{{ goal_chart }}" alt="Графік фінансових цілей">
+
+</html>
