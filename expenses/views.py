@@ -22,7 +22,7 @@ def add_expense(request):
             else:
                 expense.save()
                 messages.success(request, "Витрату успішно додано!")
-                return redirect('expenses:expenses_list')
+                return redirect('expenses:expenses_history.html')
     else:
         form = ExpenseForm()
 
@@ -34,7 +34,7 @@ def expenses_list(request):
     expenses = Expense.objects.filter(user=request.user).order_by('-date')
     total_expense = sum(exp.amount for exp in expenses)  
 
-    return render(request, 'expenses/expenses_list.html', {
+    return render(request, 'expenses/expenses_history.html', {
         'expenses': expenses,
         'total_expense': total_expense
     })

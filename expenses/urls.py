@@ -5,5 +5,5 @@ app_name = 'expenses'
 
 urlpatterns = [
     path('add/', views.add_expense, name='add_expense'),
-    path('list/', views.expenses_list, name='expenses_list'),
+    path('history/', views.expenses_list, name='expenses_list'),
 ]
