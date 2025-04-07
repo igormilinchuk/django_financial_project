@@ -9,9 +9,9 @@ from django.utils import timezone
 
 
 @login_required
-def goals_list(request):
+def goals_history(request):
     goals = FinancialGoal.objects.filter(user=request.user).order_by('-target_date')  
-    return render(request, 'goals/list.html', {'goals': goals})
+    return render(request, 'goals/history.html', {'goals': goals})
 
 @login_required
 def add_goal(request):
@@ -37,7 +37,7 @@ def add_goal(request):
 
                 goal.save()
                 messages.success(request, "Ціль успішно додана!")
-                return redirect('goals:goals_list')
+                return redirect('goals:history')
     else:
         form = FinancialGoalForm()
 
@@ -61,7 +61,7 @@ def update_goal_progress(request, goal_id):
                 contribution.save()  
                 messages.success(request, "Внесок додано успішно! Витрати оновлено.")
             
-            return redirect("goals:goals_list")
+            return redirect("goals:history")
 
     else:
         form = GoalContributionForm()
@@ -81,9 +81,9 @@ def update_goal_recurrence(request, goal_id):
             goal.recurrence = recurrence
             goal.save()
             messages.success(request, "Періодичність внеску успішно оновлено!")
-            return redirect('goals:goals_list')
+            return redirect('goals:history')
 
-    return redirect('goals:goals_list')
+    return redirect('goals:history')
 
 
 @login_required
@@ -93,7 +93,7 @@ def delete_goal(request, goal_id):
     if request.method == "POST":
         goal.delete()
         messages.success(request, "Ціль успішно видалена!")
-        return redirect('goals:goals_list')
+        return redirect('goals:history')
 
     return render(request, "goals/delete_goal.html", {"goal": goal})
 
