@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профіль</title>
+    <title>Головна сторінка</title>
+    <link rel="stylesheet" href="/static/users/style.css">
 </head>
-<body>
-    <h2>Ласкаво просимо, {{ request.user.username }}</h2>
-    <p>Email: {{ request.user.email }}</p>
-    <a href="{% url 'users:logout' %}">Вийти</a>
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+    <header style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
+        <h1 style="font-size: 2rem; margin-bottom: 10px;">Профіль</h1>
+        <nav>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; justify-content: center;">
+                <li style="margin: 0 15px;"><a href="/income/history" style="color: #fff; text-decoration: none; padding: 10px 15px; border: 1px solid #555; border-radius: 8px; transition: background-color 0.3s ease;">Внесення доходу</a></li>
+                <li style="margin: 0 15px;"><a href="/expenses/history" style="color: #fff; text-decoration: none; padding: 10px 15px; border: 1px solid #555; border-radius: 8px; transition: background-color 0.3s ease;">Витрати</a></li>
+                <li style="margin: 0 15px;"><a href="/goals/history" style="color: #fff; text-decoration: none; padding: 10px 15px; border: 1px solid #555; border-radius: 8px; transition: background-color 0.3s ease;">Фінансові цілі</a></li>
+                <li style="margin: 0 15px;"><a href="/financial_report" style="color: #fff; text-decoration: none; padding: 10px 15px; border: 1px solid #555; border-radius: 8px; transition: background-color 0.3s ease;">Аналітика</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 10px; color: #fff;">Ласкаво просимо, {{ request.user.username }}</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 20px; color: #fff;">Email: {{ request.user.email }}</p>
+        <a href="{% url 'users:logout' %}" style="color: #00c6ff; text-decoration: none; font-weight: bold;">Вийти</a>
+    </div>
+
+    <footer style="padding: 20px; background-color: #111; color: #ccc; text-align: center; position: fixed; bottom: 0; width: 100%;">
+        <p>&copy; 2025 Управління бюджетом</p>
+    </footer>
 </body>
 </html>

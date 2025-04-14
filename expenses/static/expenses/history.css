@@ -1,0 +1,116 @@
+/* Загальні стилі */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a0a0a, #333);
+    height: auto; /* Змініть на auto, щоб вміст не обрізався */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Можливо, вам захочеться змінити на flex-start */
+    color: #fff;
+    text-align: center;
+    min-height: 100vh; /* Додайте min-height для заповнення екрана */
+}
+
+/* Контейнер форми/історії витрат */
+.expense-form-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 600px; /* Збільште максимальну ширину для історії */
+    margin: 20px auto;
+    animation: fadeIn 1s ease-out;
+    color: #fff;
+    text-align: left;
+}
+
+/* Заголовок */
+.expense-form-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Список витрат */
+.expense-form-container ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.expense-form-container li {
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expense-form-container li:last-child {
+    border-bottom: none;
+}
+
+/* Стилі для окремих елементів витрати */
+.expense-form-container .expense-date {
+    flex-basis: 20%;
+}
+
+.expense-form-container .expense-category {
+    flex-basis: 30%;
+}
+
+.expense-form-container .expense-amount {
+    flex-basis: 20%;
+    text-align: right;
+    color: #00c6ff; /* Акцентний колір для суми */
+}
+
+.expense-form-container .expense-description {
+    flex-basis: 30%;
+    color: #ccc;
+    font-style: italic;
+    text-align: right;
+}
+
+/* Загальна сума витрат */
+.expense-form-container p.total-expense {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #444;
+}
+
+/* Посилання "Додати нову витрату" */
+.expense-form-container .back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.expense-form-container .back-link a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.expense-form-container .back-link a:hover {
+    text-decoration: underline;
+}
+
+/* Анімація */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,9 +1,33 @@
-
-{% block content %}
-<h2>Додати витрату</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зберегти</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати витрату</title>
+    {% load static %}
+    <link rel="stylesheet" href="/static/expenses/style.css">
+</head>
+<body>
+    {% block content %}
+        <div class="expense-form-container">
+            <h2>Додати витрату</h2>
+            <form method="post" class="expense-form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error-message">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="submit-button">Зберегти</button>
+                <div class="back-link">
+                    <a href="{% url 'expenses:expenses_list' %}">Назад до історії витрат</a>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>
