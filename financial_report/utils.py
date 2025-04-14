@@ -63,7 +63,6 @@ def compare_reports(user, start1, end1, start2, end2):
         return round(val1 - val2, 2)
 
     def convert_decimal_to_float(data):
-        # Перевести Decimal в float рекурсивно, якщо в словнику є Decimal
         if isinstance(data, decimal.Decimal):
             return float(data)
         elif isinstance(data, dict):

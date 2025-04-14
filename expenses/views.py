@@ -22,7 +22,7 @@ def add_expense(request):
             else:
                 expense.save()
                 messages.success(request, "Витрату успішно додано!")
-                return redirect('expenses:expenses_history.html')
+                return redirect('expenses:expenses_list')
     else:
         form = ExpenseForm()
 
