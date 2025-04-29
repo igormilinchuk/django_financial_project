@@ -1,0 +1,124 @@
+/* Загальні стилі (можливо, вже є, перевірте) */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a0a0a, #333);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+/* Контейнер форми витрат */
+.expense-form-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    animation: fadeIn 1s ease-out;
+    color: #fff; /* Додано колір тексту */
+    text-align: left; /* Змінено вирівнювання тексту всередині контейнера */
+}
+
+/* Заголовок форми витрат */
+.expense-form-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Повернено вирівнювання заголовка по центру */
+}
+
+/* Мітки полів форми витрат */
+.expense-form label {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+}
+
+/* Стилі для полів вводу (текст, число, вибір, textarea) */
+.expense-form input[type="number"],
+.expense-form select,
+.expense-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #444;
+    border-radius: 10px;
+    background-color: #222;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.expense-form input[type="number"]:focus,
+.expense-form select:focus,
+.expense-form textarea:focus {
+    border-color: #00c6ff;
+    outline: none;
+    box-shadow: 0 0 10px #00c6ff;
+}
+
+/* Кнопка "Зберегти" */
+.expense-form .submit-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #00c6ff, #0077ff);
+    border: 1px solid #006bb3;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.expense-form .submit-button:hover {
+    background: linear-gradient(45deg, #0077ff, #00c6ff);
+    transform: scale(1.05);
+}
+
+/* Повідомлення про помилки */
+.expense-form .error-message {
+    color: red;
+    font-size: 1rem;
+    margin-top: 5px;
+    text-align: left; /* Вирівнювання тексту помилки зліва */
+}
+
+/* Посилання "Назад до історії витрат" */
+.expense-form .back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.expense-form .back-link a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.expense-form .back-link a:hover {
+    text-decoration: underline;
+}
+
+/* Анімація для контейнера форми витрат */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

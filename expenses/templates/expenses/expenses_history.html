@@ -1,9 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Історія витрат</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'expenses/history.css' %}">
+</head>
+<body>
+    <div class="expense-form-container">
+        <h2>Історія ваших витрат</h2>
 
-{% block content %}
-<h2>Ваші витрати</h2>
-<ul>
-    {% for expense in expenses %}
-        <li>{{ expense.date }} - {{ expense.category }}: {{ expense.amount }} грн</li>
-    {% endfor %}
-</ul>
-{% endblock %}
+        {% if expenses %}
+            <ul>
+                {% for expense in expenses %}
+                    <li>{{ expense.date }} - {{ expense.get_category_display }}: {{ expense.amount }} грн
+                        {% if expense.description %}
+                            ({{ expense.description }})
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Загальна сума витрат: {{ total_expense }} грн</p>
+        {% else %}
+            <p>У вас ще немає жодних витрат.</p>
+        {% endif %}
+
+        <div class="back-link">
+            <a href="{% url 'expenses:add_expense' %}">Додати нову витрату</a>
+        </div>
+    </div>
+</body>
+</html>
