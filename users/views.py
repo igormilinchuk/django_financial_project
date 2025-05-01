@@ -43,7 +43,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             auth_login(request, user)
-            return redirect('users:profile')
+            return redirect('main:home') 
         else:
             return render(request, 'users/login.html', {'error': 'Невірний логін або пароль'})
     return render(request, 'users/login.html')
@@ -55,6 +55,3 @@ def user_logout(request):
     return redirect('users:login')
 
 
-
-def profile(request):
-    return render(request, 'users/profile.html')
