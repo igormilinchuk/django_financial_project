@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Додати фінансову ціль</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'add.css' %}">
+    <link rel="stylesheet" href="{% static 'add_goal.css' %}">
 </head>
 <body>
     <div class="expense-form-container">
@@ -40,6 +40,9 @@
             <button type="submit" class="submit-button">Зберегти</button>
             <div class="back-link">
                 <a href="{% url 'goals:history' %}">Назад до історії цілей</a>
+            </div>
+            <div class="back-link">
+                <a href="{% url 'main:home' %}">Головна сторінка</a>
             </div>
         </form>
     </div>

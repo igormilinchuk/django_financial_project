@@ -1,0 +1,127 @@
+/* Загальні стилі (можуть бути вже визначені у вашому financial.css) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #0c0d0d;
+    color: #fff;
+    text-align: left;
+    position: relative; /* Для абсолютно позиціонованих елементів */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+h2, h3 {
+    color: #eee;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #aaa;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Стилі для форми порівняння періодів */
+form {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: auto 1fr; /* Розміщуємо label над input на малих екранах */
+    gap: 10px;
+    align-items: center;
+}
+
+form label {
+    color: #ddd;
+    font-size: 0.9rem;
+    text-align: left; /* Вирівнюємо label ліворуч */
+}
+
+form input[type="date"] {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #222;
+    color: #eee;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    background: linear-gradient(45deg, #00c6ff, #0077ff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    grid-column: 1 / -1; /* Розтягуємо кнопку на всю ширину */
+    margin-top: 15px;
+}
+
+form button[type="submit"]:hover {
+    background: linear-gradient(45deg, #0077ff, #00c6ff);
+}
+
+/* Стилі для повідомлення про помилку */
+.alert-danger {
+    background-color: #721c24;
+    color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Стилі для контейнера графіка */
+canvas#comparisonChart {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 60px; /* Збільшено відступ для кнопки "Головна сторінка" */
+}
+
+/* Стилі для кнопки "Головна сторінка" */
+.back-link {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.back-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #00c6ff, #0077ff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.back-link a:hover {
+    background: linear-gradient(45deg, #0077ff, #00c6ff);
+}
+
+/* Адаптивність для форми */
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: auto 1fr; /* Переводимо на одноколонкову форму на малих екранах */
+    }
+
+    form label {
+        text-align: left;
+    }
+}

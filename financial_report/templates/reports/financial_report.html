@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Фінансовий звіт</title>
+    <link rel="stylesheet" href="/static/financial.css">
 </head>
 <body>
     <h1>Фінансовий звіт</h1>
@@ -27,34 +28,39 @@
     </ul>
     <h3>Графік витрат</h3>
     <img src="data:image/png;base64,{{ expense_chart }}" alt="Витрати графік" />
+
+    <h2>Фінансові цілі</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Категорія</th>
+                <th>Назва</th>
+                <th>Цільова сума</th>
+                <th>Поточна сума</th>
+                <th>Прогрес</th>
+                <th>Дата досягнення</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for goal in goals %}
+            <tr>
+                <td>{{ goal.category }}</td>
+                <td>{{ goal.name }}</td>
+                <td>{{ goal.target_amount }}</td>
+                <td>{{ goal.current_amount }}</td>
+                <td>{{ goal.progress }}%</td>
+                <td>{{ goal.target_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Графік фінансових цілей</h2>
+    <img src="data:image/png;base64,{{ goal_chart }}" alt="Графік фінансових цілей">
+
+    <div class="bottom-links"> <!- Новий контейнер -->
+        <a href="{% url 'main:home' %}">Головна сторінка</a>
+        <a href="{% url 'financial_report:compare_report' %}">Порівняння періодів</a>
+    </div>
 </body>
-<h2>Фінансові цілі</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Категорія</th>
-            <th>Назва</th>
-            <th>Цільова сума</th>
-            <th>Поточна сума</th>
-            <th>Прогрес</th>
-            <th>Дата досягнення</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for goal in goals %}
-        <tr>
-            <td>{{ goal.category }}</td>
-            <td>{{ goal.name }}</td>
-            <td>{{ goal.target_amount }}</td>
-            <td>{{ goal.current_amount }}</td>
-            <td>{{ goal.progress }}%</td>
-            <td>{{ goal.target_date }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<h2>Графік фінансових цілей</h2>
-<img src="data:image/png;base64,{{ goal_chart }}" alt="Графік фінансових цілей">
-
 </html>

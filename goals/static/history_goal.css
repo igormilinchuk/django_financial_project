@@ -4,10 +4,10 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #0a0a0a, #333);
-    height: 100vh;
+    min-height: 100vh; /* Додано для забезпечення мінімальної висоти */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Змінено для вирівнювання контейнера зверху */
     color: #fff;
     text-align: center;
 }
@@ -24,6 +24,8 @@ body {
     animation: fadeIn 1s ease-out; /* Додано анімацію */
     color: #fff;
     text-align: left;
+    max-height: 80vh; /* Додано максимальну висоту для скрола */
+    overflow-y: auto; /* Додано вертикальний скрол */
 }
 
 /* Заголовок сторінки історії */
@@ -145,7 +147,7 @@ body {
     margin-top: 20px;
 }
 
-/* Стиль для посилання "Додати нову ціль" */
+/* Стиль для посилань "Додати нову ціль" та "Головна сторінка" */
 .back-link {
     margin-top: 20px;
     text-align: center;
@@ -156,6 +158,8 @@ body {
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
+    display: block; /* Щоб посилання займали весь рядок і не були в одному рядку */
+    margin-bottom: 10px; /* Додано відступ між посиланнями */
 }
 
 .back-link a:hover {
