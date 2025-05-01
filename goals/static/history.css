@@ -1,0 +1,217 @@
+/* Загальні стилі (скопійовані з add.css/update.css) */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a0a0a, #333);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+/* Контейнер форми цілі (перейменовано для історії) */
+.expense-form-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 600px; /* Залишаємо більшу ширину для історії */
+    margin: 20px auto;
+    animation: fadeIn 1s ease-out; /* Додано анімацію */
+    color: #fff;
+    text-align: left;
+}
+
+/* Заголовок сторінки історії */
+.expense-form-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Стиль для контейнера кожної цілі */
+.form-group {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #222;
+}
+
+/* Стиль для заголовка цілі */
+.form-group h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Стиль для міток інформації про ціль */
+.form-group strong {
+    color: #ccc;
+    margin-right: 5px;
+}
+
+/* Стиль для повідомлення про досягнуту ціль */
+.form-group .achieved {
+    color: #00c6ff;
+}
+
+/* Стиль для форми зміни періодичності */
+.recurrence-form {
+    margin-top: 15px;
+}
+
+.recurrence-form label {
+    color: #ccc;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.recurrence-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.recurrence-form .submit-button {
+    width: auto;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background: linear-gradient(45deg, #00c6ff, #0077ff);
+    border: 1px solid #006bb3;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.recurrence-form .submit-button:hover {
+    background: linear-gradient(45deg, #0077ff, #00c6ff);
+    transform: scale(1.05);
+}
+
+/* Стиль для посилань на оновлення прогресу та видалення цілі */
+.goal-actions a.button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #555;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.goal-actions a.button:hover {
+    background-color: #777;
+}
+
+.goal-actions form {
+    display: inline;
+}
+
+.goal-actions form .submit-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.goal-actions form .submit-button:hover {
+    background-color: #c9302c;
+}
+
+/* Стиль для повідомлення про порожній список цілей */
+.empty-goals {
+    color: #ccc;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* Стиль для посилання "Додати нову ціль" */
+.back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-link a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* Анімація для контейнера форми */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Футер */
+footer {
+    padding: 15px;
+    background: #1a1a1a;
+    color: #ccc;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    font-size: 0.9rem;
+}
+
+/* Стилі для поля дати (якщо знадобиться) */
+.expense-form input[type="text"].flatpickr-input {
+    width: 100%;
+    padding: 8px; /* Менший паддінг для таблиці */
+    margin-bottom: 10px; /* Менший марджин */
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    font-size: 0.9rem; /* Менший шрифт */
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.expense-form input[type="text"].flatpickr-input:focus {
+    border-color: #00c6ff;
+    outline: none;
+    box-shadow: 0 0 5px #00c6ff; /* Менша тінь */
+}
+
+/* Стилі для повідомлень про помилки (якщо знадобляться) */
+.expense-form .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: left;
+}

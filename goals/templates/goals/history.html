@@ -1,39 +1,57 @@
-{% for goal in goals %}
-    <div>
-        <h3>{{ goal.name }}</h3>
-        <p>Сума: {{ goal.target_amount }} грн</p>
-        <p>Термін: {{ goal.target_date }}</p>
-        <p>Прогрес: {{ goal.progress_percentage }}%</p>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Історія ваших цілей</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'history.css' %}">
+</head>
+<body>
+    <div class="expense-form-container">
+        <h2>Історія ваших цілей</h2>
+        {% for goal in goals %}
+        <div class="form-group" style="margin-bottom: 20px; padding: 15px; border: 1px solid #333; border-radius: 8px; background-color: #222;">
+            <h3>{{ goal.name }}</h3>
+            <p><strong style="color: #ccc;">Сума:</strong> {{ goal.target_amount }} грн</p>
+            <p><strong style="color: #ccc;">Термін:</strong> {{ goal.target_date }}</p>
+            <p><strong style="color: #ccc;">Прогрес:</strong> {{ goal.progress_percentage }}%</p>
 
-        {% if goal.is_goal_achieved %}
-            <p>Ціль досягнута!</p>
-        {% else %}
-            <!-- Форма для зміни періодичності -->
-            <form method="POST" action="{% url 'goals:update_goal_recurrence' goal.id %}">
-                {% csrf_token %}
-                <label for="recurrence">Змінити періодичність:</label>
-                <select name="recurrence" id="recurrence">
-                    <option value="daily" {% if goal.recurrence == 'daily' %}selected{% endif %}>Щоденно</option>
-                    <option value="weekly" {% if goal.recurrence == 'weekly' %}selected{% endif %}>Щотижня</option>
-                    <option value="monthly" {% if goal.recurrence == 'monthly' %}selected{% endif %}>Щомісячно</option>
-                </select>
-                <button type="submit">Оновити періодичність</button>
-            </form>
-            
-            <!-- Виведення внеску за новою періодичністю -->
-            {% if goal.recurrence == 'daily' %}
-                <p>Щоденний внесок: {{ goal.calculate_contribution|floatformat:2 }} грн</p>
-            {% elif goal.recurrence == 'weekly' %}
-                <p>Щотижневий внесок: {{ goal.calculate_contribution|floatformat:2 }} грн</p>
-            {% elif goal.recurrence == 'monthly' %}
-                <p>Щомісячний внесок: {{ goal.calculate_contribution|floatformat:2 }} грн</p>
+            {% if goal.is_goal_achieved %}
+                <p style="color: #00c6ff;">Ціль досягнута!</p>
+            {% else %}
+                <form method="POST" action="{% url 'goals:update_goal_recurrence' goal.id %}" style="margin-top: 15px;">
+                    {% csrf_token %}
+                    <label for="recurrence" style="color: #ccc; display: block; margin-bottom: 5px;">Змінити періодичність:</label>
+                    <select name="recurrence" id="recurrence" style="width: 100%; padding: 8px; border: 1px solid #444; border-radius: 5px; background-color: #333; color: #fff; margin-bottom: 10px;">
+                        <option value="daily" {% if goal.recurrence == 'daily' %}selected{% endif %}>Щоденно</option>
+                        <option value="weekly" {% if goal.recurrence == 'weekly' %}selected{% endif %}>Щотижня</option>
+                        <option value="monthly" {% if goal.recurrence == 'monthly' %}selected{% endif %}>Щомісячно</option>
+                    </select>
+                    <button type="submit" class="submit-button" style="width: auto; background-color: #555; color: #fff; padding: 8px 15px; font-size: 0.9rem;">Оновити періодичність</button>
+                </form>
+
+                {% if goal.recurrence == 'daily' %}
+                    <p><strong style="color: #ccc;">Щоденний внесок:</strong> {{ goal.calculate_contribution|floatformat:2 }} грн</p>
+                {% elif goal.recurrence == 'weekly' %}
+                    <p><strong style="color: #ccc;">Щотижневий внесок:</strong> {{ goal.calculate_contribution|floatformat:2 }} грн</p>
+                {% elif goal.recurrence == 'monthly' %}
+                    <p><strong style="color: #ccc;">Щомісячний внесок:</strong> {{ goal.calculate_contribution|floatformat:2 }} грн</p>
+                {% endif %}
             {% endif %}
-        {% endif %}
-        
-        <p><a href="{% url 'goals:update_goal_progress' goal.id %}">Оновити прогрес</a></p>
-        <form method="POST" action="{% url 'goals:delete_goal' goal.id %}">
-            {% csrf_token %}
-            <button type="submit">Видалити ціль</button>
-        </form>
+
+            <p><a href="{% url 'goals:update_goal_progress' goal.id %}" class="button" style="display: inline-block; padding: 8px 15px; background-color: #555; color: #fff; text-decoration: none; border-radius: 5px; margin-right: 10px;">Оновити прогрес</a></p>
+            <form method="POST" action="{% url 'goals:delete_goal' goal.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="submit-button" style="padding: 8px 15px; font-size: 0.9rem; background-color: #d9534f; border-color: #d43f3a;">Видалити ціль</button>
+            </form>
+        </div>
+        {% empty %}
+            <p style="color: #ccc;">У вас поки немає жодних цілей.</p>
+        {% endfor %}
+        <div class="back-link" style="margin-top: 20px; text-align: center;">
+            <a href="{% url 'goals:add_goal' %}">Додати нову ціль</a>
+        </div>
     </div>
-{% endfor %}
+</body>
+</html>
