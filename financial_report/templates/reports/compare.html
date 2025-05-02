@@ -1,24 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фінансовий звіт</title>
+    <link rel="stylesheet" href="/static/compare.css">
+</head>
 <h2>🔎 Порівняння періодів</h2>
 <form method="get" class="mb-4">
     <label for="start_date_1">Початок першого періоду:</label>
-    <input type="text" name="start_date_1" placeholder="ДД.ММ.РРРР" required>
-    
+    <input type="date" name="start_date_1" required>
+
     <label for="end_date_1">Кінець першого періоду:</label>
-    <input type="text" name="end_date_1" placeholder="ДД.ММ.РРРР" required>
-    
+    <input type="date" name="end_date_1" required>
+
     <label for="start_date_2">Початок другого періоду:</label>
-    <input type="text" name="start_date_2" placeholder="ДД.ММ.РРРР" required>
-    
+    <input type="date" name="start_date_2" required>
+
     <label for="end_date_2">Кінець другого періоду:</label>
-    <input type="text" name="end_date_2" placeholder="ДД.ММ.РРРР" required>
-    
+    <input type="date" name="end_date_2" required>
+
     <button type="submit">Порівняти</button>
 </form>
 
 {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
 {% endif %}
-
 
 <h3>📊 Графік порівняння</h3>
 <h3>📊 Графік порівняння за період {{ start1 }} - {{ end1 }} та {{ start2 }} - {{ end2 }}</h3>
@@ -28,7 +35,7 @@
 <script>
     const period1Data = JSON.parse('{{ period1_report_json|escapejs }}');
     const period2Data = JSON.parse('{{ period2_report_json|escapejs }}');
-    
+
     const period1Label = '{{ period1_label|escapejs }}';
     const period2Label = '{{ period2_label|escapejs }}';
 
@@ -73,5 +80,8 @@
         }
     });
 </script>
-
-
+</div>
+<div class="back-link">
+    <a href="{% url 'main:home' %}">Головна сторінка</a>
+</div>
+</html>

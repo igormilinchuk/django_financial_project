@@ -1,0 +1,123 @@
+/* Загальні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #0c0d0d;
+    color: #fff;
+    text-align: left;
+    position: relative; /* Для абсолютно позиціонованого посилання */
+    min-height: 100vh; /* Щоб футер був внизу, якщо контенту мало */
+    box-sizing: border-box; /* Враховуємо padding та border */
+}
+
+h1, h2, h3 {
+    color: #eee;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+h3 {
+    color: #aaa;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* Стилі для таблиці */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px; /* Збільшено відступ для посилання */
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Для заокруглення кутів */
+}
+
+thead th {
+    background-color: #333;
+    color: #ddd;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #555;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #222;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #222;
+}
+
+/* Стилі для графіків */
+img[alt*="графік"] {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: #1a1a1a; /* На випадок прозорості графіка */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Стилі для контейнера посилань внизу сторінки */
+.bottom-links {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex; /* Використовуємо flexbox для розміщення посилань поруч */
+    gap: 10px; /* Відступ між посиланнями */
+    align-items: center; /* Вирівнюємо по вертикалі (за потреби) */
+}
+
+/* Стилі для окремих посилань */
+.bottom-links a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #00c6ff, #0077ff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-links a:hover {
+    background: linear-gradient(45deg, #0077ff, #00c6ff);
+}

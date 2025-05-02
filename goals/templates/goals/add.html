@@ -1,39 +1,63 @@
-{% block content %}
-<h2>Додати фінансову ціль</h2>
-<form method="POST">
-    {% csrf_token %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати фінансову ціль</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'add_goal.css' %}">
+</head>
+<body>
+    <div class="expense-form-container">
+        <h2>Додати фінансову ціль</h2>
+        <form method="POST" class="expense-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="error-message">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.target_amount.id_for_label }}">{{ form.target_amount.label }}</label>
+                {{ form.target_amount }}
+                {% if form.target_amount.errors %}
+                    <div class="error-message">{{ form.target_amount.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.target_date.id_for_label }}">{{ form.target_date.label }}</label>
+                {{ form.target_date }}
+                {% if form.target_date.errors %}
+                    <div class="error-message">{{ form.target_date.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="submit-button">Зберегти</button>
+            <div class="back-link">
+                <a href="{% url 'goals:history' %}">Назад до історії цілей</a>
+            </div>
+            <div class="back-link">
+                <a href="{% url 'main:home' %}">Головна сторінка</a>
+            </div>
+        </form>
+    </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        flatpickr("#id_target_date", {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            locale: "uk"
+        });
+    </script>
+
     
-    <div>
-        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
-        {{ form.name }}
-    </div>
-
-    <div>
-        <label for="{{ form.target_amount.id_for_label }}">{{ form.target_amount.label }}</label>
-        {{ form.target_amount }}
-    </div>
-    <!-- Додаємо клас flatpickr до поля target_date -->
-    <div>
-        <label for="{{ form.target_date.id_for_label }}">{{ form.target_date.label }}</label>
-        {{ form.target_date }} <!-- Форма використовуючи flatpickr -->
-    </div>
-
-    <button type="submit">Зберегти</button>
-</form>
-
-<a href="{% url 'goals:goals_list' %}" class="button">Переглянути список цілей</a>
-</form>
-<!-- Підключення flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<script>
-    // Ініціалізація flatpickr для полів з класом .flatpickr
-    flatpickr(".flatpickr", {
-        dateFormat: "Y-m-d",  // Формат дати
-        minDate: "today",     // Не можна вибрати дату в минулому
-        locale: "uk"          // Українська мова
-    });
-</script>
-
-{% endblock %}
+</body>
+</html>

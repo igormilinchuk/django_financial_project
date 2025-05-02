@@ -1,21 +1,36 @@
-<form method="POST">
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Історія доходів</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'history.css' %}">
+    <link rel="stylesheet" href="{% static 'add.css' %}">
+</head>
+<form method="POST" class="income-form">
     {% csrf_token %}
-    
+
     <label for="datepicker">Дата отримання:</label>
     <input type="text" id="datepicker" name="date" value="{{ form.date.value|default:'' }}">
 
     {{ form.amount.label_tag }} {{ form.amount }}
     {{ form.source.label_tag }} {{ form.source }}
 
-    <button type="submit">Зберегти</button>
+    {{ form.income_type.label_tag }} {{ form.income_type }}
+
+    <button type="submit" class="submit-button">Зберегти</button>
 </form>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     flatpickr("#datepicker", {
-        dateFormat: "Y-m-d", 
-        maxDate: "today",     
-        locale: "uk"          
+        dateFormat: "Y-m-d",
+        maxDate: "today",
+        locale: "uk"
     });
 </script>
+<div class="button-container-bottom">
+    <a href="{% url 'main:home' %}" class="button">Головна сторінка</a>
+</div>

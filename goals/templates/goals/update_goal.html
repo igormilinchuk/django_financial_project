@@ -1,14 +1,30 @@
-<h2>Додати внесок до цілі "{{ goal.name }}"</h2>
-<p>Необхідно зібрати: {{ goal.target_amount }} грн</p>
-<p>Назбирано: {{ goal.current_amount }} грн</p>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати внесок</title> {% load static %}
+    <link rel="stylesheet" href="{% static 'update.css' %}">
+</head>
+<body>
+    <div class="expense-form-container">
+        <h2>Додати внесок до цілі "{{ goal.name }}"</h2>
+        <p>Необхідно зібрати: {{ goal.target_amount }} грн</p>
+        <p>Назбирано: {{ goal.current_amount }} грн</p>
 
-<form method="post">
-    {% csrf_token %}
-    
-    <label for="{{ form.amount.id_for_label }}">Сума внеску:</label>
-    <input type="number" name="amount" id="{{ form.amount.id_for_label }}" step="1" min="1" required>
-    
-    <button type="submit">Додати</button>
-   <a href="{% url 'goals:history' %}" class="button">Переглянути список цілей</a>
-</form>
+        <form method="post" class="expense-form">
+            {% csrf_token %}
 
+            <div class="form-group">
+                <label for="{{ form.amount.id_for_label }}">Сума внеску:</label>
+                <input type="number" name="amount" id="{{ form.amount.id_for_label }}" step="1" min="1" required class="form-control">
+            </div>
+
+            <button type="submit" class="submit-button">Додати</button>
+            <div class="back-link">
+                <a href="{% url 'goals:history' %}" class="button">Переглянути список цілей</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
