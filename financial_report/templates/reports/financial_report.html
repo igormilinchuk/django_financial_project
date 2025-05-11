@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/static/financial.css">
 </head>
 <body>
+    <div class="top-links">
+        <a href="{% url 'main:home' %}">Головна сторінка</a>
+        <a href="{% url 'financial_report:compare_report' %}">Порівняння періодів</a>
+    </div>
+
     <h1>Фінансовий звіт</h1>
 
     <h2>Доходи</h2>
@@ -57,10 +62,5 @@
 
     <h2>Графік фінансових цілей</h2>
     <img src="data:image/png;base64,{{ goal_chart }}" alt="Графік фінансових цілей">
-
-    <div class="bottom-links"> <!- Новий контейнер -->
-        <a href="{% url 'main:home' %}">Головна сторінка</a>
-        <a href="{% url 'financial_report:compare_report' %}">Порівняння періодів</a>
-    </div>
 </body>
 </html>

@@ -9,28 +9,29 @@
     <link rel="stylesheet" href="{% static 'financial.css' %}">
 </head>
 <body>
+    <div class="top-links">
+        <a href="{% url 'income:add_income' %}" class="button">Додати новий дохід</a>
+        <a href="{% url 'main:home' %}" class="button">Головна сторінка</a>
+    </div>
+
     {% block content %}
     <h2>Історія доходів</h2>
     <table>
         <tr>
             <th>Джерело</th>
             <th>Сума</th>
-            <th>Тип</th> <th>Дата</th>
+            <th>Тип</th>
+            <th>Дата</th>
         </tr>
         {% for income in incomes %}
         <tr>
             <td>{{ income.source }}</td>
             <td>{{ income.amount }}</td>
-            <td>{{ income.get_income_type_display }}</td> <td>{{ income.date}}</td>
+            <td>{{ income.get_income_type_display }}</td>
+            <td>{{ income.date}}</td>
         </tr>
         {% endfor %}
     </table>
     {% endblock %}
-
-    <div class="button-container-bottom">
-        <a href="{% url 'income:add_income' %}" class="button">Додати новий дохід</a>
-        <a href="{% url 'main:home' %}" class="button">Головна сторінка</a>
-    </div>
-
 </body>
 </html>

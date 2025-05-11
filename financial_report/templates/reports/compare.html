@@ -3,85 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фінансовий звіт</title>
+    <title>Порівняння періодів</title>
     <link rel="stylesheet" href="/static/compare.css">
 </head>
-<h2>🔎 Порівняння періодів</h2>
-<form method="get" class="mb-4">
-    <label for="start_date_1">Початок першого періоду:</label>
-    <input type="date" name="start_date_1" required>
+<body>
+    <div class="top-links">
+        <a href="{% url 'main:home' %}">Головна сторінка</a>
+    </div>
 
-    <label for="end_date_1">Кінець першого періоду:</label>
-    <input type="date" name="end_date_1" required>
+    <h2>🔎 Порівняння періодів</h2>
+    <form method="get" class="mb-4">
+        <label for="start_date_1">Початок першого періоду:</label>
+        <input type="date" name="start_date_1" required>
 
-    <label for="start_date_2">Початок другого періоду:</label>
-    <input type="date" name="start_date_2" required>
+        <label for="end_date_1">Кінець першого періоду:</label>
+        <input type="date" name="end_date_1" required>
 
-    <label for="end_date_2">Кінець другого періоду:</label>
-    <input type="date" name="end_date_2" required>
+        <label for="start_date_2">Початок другого періоду:</label>
+        <input type="date" name="start_date_2" required>
 
-    <button type="submit">Порівняти</button>
-</form>
+        <label for="end_date_2">Кінець другого періоду:</label>
+        <input type="date" name="end_date_2" required>
 
-{% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
-{% endif %}
+        <button type="submit">Порівняти</button>
+    </form>
 
-<h3>📊 Графік порівняння</h3>
-<h3>📊 Графік порівняння за період {{ start1 }} - {{ end1 }} та {{ start2 }} - {{ end2 }}</h3>
-<canvas id="comparisonChart"></canvas>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const period1Data = JSON.parse('{{ period1_report_json|escapejs }}');
-    const period2Data = JSON.parse('{{ period2_report_json|escapejs }}');
+    <h3>📊 Графік порівняння</h3>
+    <h3>📊 Графік порівняння за період {{ start1 }} - {{ end1 }} та {{ start2 }} - {{ end2 }}</h3>
+    <canvas id="comparisonChart"></canvas>
 
-    const period1Label = '{{ period1_label|escapejs }}';
-    const period2Label = '{{ period2_label|escapejs }}';
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const period1Data = JSON.parse('{{ period1_report_json|escapejs }}');
+        const period2Data = JSON.parse('{{ period2_report_json|escapejs }}');
 
-    const ctx = document.getElementById('comparisonChart').getContext('2d');
+        const period1Label = '{{ period1_label|escapejs }}';
+        const period2Label = '{{ period2_label|escapejs }}';
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Доходи', 'Витрати', 'Цілі виконано'],
-            datasets: [
-                {
-                    label: period1Label,  // Використовуємо період часу
-                    data: [
-                        period1Data.income.total_income,
-                        period1Data.expenses.total_expense,
-                        period1Data.goals.achieved
-                    ],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: period2Label,  // Використовуємо період часу
-                    data: [
-                        period2Data.income.total_income,
-                        period2Data.expenses.total_expense,
-                        period2Data.goals.achieved
-                    ],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+        const ctx = document.getElementById('comparisonChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Доходи', 'Витрати', 'Цілі виконано'],
+                datasets: [
+                    {
+                        label: period1Label,  // Використовуємо період часу
+                        data: [
+                            period1Data.income.total_income,
+                            period1Data.expenses.total_expense,
+                            period1Data.goals.achieved
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: period2Label,  // Використовуємо період часу
+                        data: [
+                            period2Data.income.total_income,
+                            period2Data.expenses.total_expense,
+                            period2Data.goals.achieved
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-</script>
-</div>
-<div class="back-link">
-    <a href="{% url 'main:home' %}">Головна сторінка</a>
-</div>
+        });
+    </script>
+</body>
 </html>
