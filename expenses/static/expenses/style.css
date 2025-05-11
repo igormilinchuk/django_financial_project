@@ -10,6 +10,7 @@ body {
     align-items: center;
     color: #fff;
     text-align: center;
+    position: relative; /* Додаємо для позиціонування .top-links */
 }
 
 /* Контейнер форми витрат */
@@ -95,7 +96,7 @@ body {
     text-align: left; /* Вирівнювання тексту помилки зліва */
 }
 
-/* Посилання "Назад до історії витрат" */
+/* Стилі для посилання "Назад до історії витрат" */
 .expense-form .back-link {
     margin-top: 20px;
     text-align: center;
@@ -108,6 +109,23 @@ body {
 }
 
 .expense-form .back-link a:hover {
+    text-decoration: underline;
+}
+
+/* Стилі для посилання "Головна сторінка" у верхньому правому куті */
+.top-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.top-links a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.top-links a:hover {
     text-decoration: underline;
 }
 
